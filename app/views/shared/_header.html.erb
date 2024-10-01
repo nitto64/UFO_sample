@@ -17,10 +17,7 @@
             <% end %>
           </li>
           <li>
-            <!-- ログアウトボタン -->
-            <%= link_to logout_path, data: { turbo_method: :delete }, class: "block py-2 px-4 text-gray-500 bg-white rounded hover:bg-gray-100 md:hover:bg-gray-200" do %>
-              ログアウト
-            <% end %>
+            <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block py-2 px-4 text-gray-500 bg-white rounded hover:bg-gray-100 md:hover:bg-gray-200" %>
           </li>
         </ul>
       </div>
