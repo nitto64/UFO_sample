@@ -8,16 +8,20 @@
       <% end %>
 
       <!-- ナビゲーションメニュー -->
-      <div id="navbar-default" class="w-full md:block md:w-auto">
-        <ul class="flex flex-col items-center p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-green-400">
+      <div id="navbar-default" class="block w-auto">
+        <ul class="flex items-center p-4 rounded-lg bg-green-400 space-x-8 text-sm font-medium">
+	        <li>
+            <!-- 投稿一覧へのリンク -->
+            <%= link_to "投稿一覧", root_path, class: "block py-2 px-4 text-gray-500 bg-white rounded hover:bg-gray-100" %>
+          </li>
           <li>
             <!-- ユーザー名（ユーザー詳細ページへのリンク） -->
-            <%= link_to "#", class: "block py-2 px-4 text-gray-500 bg-white rounded hover:bg-gray-100 md:hover:bg-gray-200" do %>
+            <%= link_to "#", class: "block py-2 px-4 text-gray-500 bg-white rounded hover:bg-gray-100" do %>
               <%= current_user.name %>
             <% end %>
           </li>
           <li>
-            <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block py-2 px-4 text-gray-500 bg-white rounded hover:bg-gray-100 md:hover:bg-gray-200" %>
+            <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete }, class: "block py-2 px-4 text-gray-500 bg-white rounded hover:bg-gray-100" %>
           </li>
         </ul>
       </div>
