@@ -17,11 +17,16 @@ ja:
     new:
       title: ユーザー登録
       to_login_page: ログインページへ
+  posts:
+    new:
+      title: 新規記録作成
+      submit: 投稿する
   header:
     login: ログイン
     logout: ログアウト
     signup: 新規登録
   flash:
+    require_login: "ログインしてください"
     users:
       create:
         success: "ユーザー登録が完了しました。"
@@ -32,3 +37,7 @@ ja:
         failure: "ログインに失敗しました。"
       destroy:
         success: "ログアウトしました。"
+    posts:
+      create:
+        success: "投稿が成功しました"
+        failure: "投稿に失敗しました"
