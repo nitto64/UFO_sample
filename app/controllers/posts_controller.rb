@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # 下記がログインをスキップするための設定
   skip_before_action :require_login, only: [:index]
 
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show ]
 
   # GET /posts or /posts.json
   def index
@@ -20,41 +20,41 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = current_user.posts.find(params[:id])
   end
 
   # POST /posts or /posts.json
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-	    flash[:notice] = t('flash.posts.create.success')
+	    flash[:notice] = t('flash.created', item: Post.model_name.human)
       redirect_to root_path
     else
-      flash.now[:alert] = t('flash.posts.create.failure')
+      flash.now[:alert] = t('flash.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    @post = current_user.posts.find(params[:id])
+	
+    if @post.update(post_params)
+      flash[:notice] = t('flash.updated', item: Post.model_name.human)
+      redirect_to @post
+    else
+      flash.now[:alert] = t('flash.not_updated', item: Post.model_name.human)
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @post = current_user.posts.find(params[:id])  # 現在のユーザーの投稿のみ取得
+    @post.destroy!  # 削除を実行
+    
+    # 削除後、ルートパスにリダイレクトし、フラッシュメッセージを表示
+    redirect_to root_path, notice: t('flash.deleted', item: Post.model_name.human), status: :see_other
   end
 
   private
