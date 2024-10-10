@@ -21,11 +21,20 @@ ja:
     new:
       title: 新規記録作成
       submit: 投稿する
+    show:
+      title: 記録詳細画面
+    edit:
+      title: 記録編集画面
   header:
     login: ログイン
     logout: ログアウト
     signup: 新規登録
   flash:
+    created: "%{item}を作成しました"
+    not_created: "%{item}を作成出来ませんでした"
+    updated: "%{item}を更新しました"
+    not_updated: "%{item}を更新出来ませんでした"
+    deleted: "%{item}を削除しました"
     require_login: "ログインしてください"
     users:
       create:
@@ -37,7 +46,4 @@ ja:
         failure: "ログインに失敗しました。"
       destroy:
         success: "ログアウトしました。"
-    posts:
-      create:
-        success: "投稿が成功しました"
-        failure: "投稿に失敗しました"
+    
