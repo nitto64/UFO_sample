@@ -7,13 +7,20 @@
       <%= @post.title %>
     </h4>
 
-    <!-- サムネイル画像（上側） -->
-    <div class="flex-shrink-0 mb-2">
-      <% if @post.thumbnail.attached? %>  <!-- サムネイル画像がアップロードされている場合 -->
-        <%= image_tag @post.thumbnail, class: "rounded-md", style: "width: 100%; height: auto;" %>
-      <% else %>  <!-- サムネイル画像がない場合はデフォルトの画像を表示 -->
-        <%= image_tag "post_placeholder.png", class: "rounded-md", style: "width: 100%; height: auto;" %>
-      <% end %>
+    <!-- Swiperスライダー表示部分 -->
+    <div class="swiper-container mb-4 relative  max-w-full overflow-hidden"> <!-- relativeクラスを追加 -->
+      <div class="swiper-wrapper">
+        <% @post.main_images.each do |image| %>
+          <div class="swiper-slide">
+            <%= image_tag image, class: "w-full rounded-md h-64 object-cover" %>
+          </div>
+        <% end %>
+      </div>
+      <!-- ページネーション（スライダー内に移動） -->
+      <div class="swiper-pagination absolute bottom-2 left-1/2 transform -translate-x-1/2"></div>
+      <!-- ナビゲーションボタン（スライダー内に移動） -->
+      <div class="swiper-button-prev absolute left-2 top-1/2 transform -translate-y-1/2"></div>
+      <div class="swiper-button-next absolute right-2 top-1/2 transform -translate-y-1/2"></div>
     </div>
 
     <!-- 本文（サムネイルの下に表示） -->
