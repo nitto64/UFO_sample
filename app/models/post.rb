@@ -7,4 +7,8 @@ class Post < ApplicationRecord
   validates :body, presence: true, length: { maximum: 65_535 }
   validates :main_images, attachment: { content_type: %r{\Aimage/(png|jpeg)\Z}, maximum: 15.megabytes, purge: true }
   validates :thumbnail, attachment: { content_type: %r{\Aimage/(png|jpeg)\Z}, maximum: 15.megabytes, purge: true }
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["title", "body", "created_at", "updated_at", "user_id"] # 検索可能な属性を指定
+  end
 end
