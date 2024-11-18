@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :posts do
-    delete 'image/:id', to: 'posts#destroy_image', as: 'image'
+    delete "image/:id", to: "posts#destroy_image", as: "image"
   end
   resources :users
-  get 'login', to: 'user_sessions#new'
-  post 'login', to: 'user_sessions#create'
-  delete 'logout', to: 'user_sessions#destroy'
-  
+  get "login", to: "user_sessions#new"
+  post "login", to: "user_sessions#create"
+  delete "logout", to: "user_sessions#destroy"
+
   root "posts#index"
 
   # これより下記の機能に関しては後に調べて必要なければ消す

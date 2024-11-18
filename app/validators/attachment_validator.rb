@@ -16,9 +16,8 @@ class AttachmentValidator < ActiveModel::EachValidator
   end
 
   private
-  
-  def validate_file(record, attribute, file)
 
+  def validate_file(record, attribute, file)
     has_error = false
 
     if options[:maximum]
@@ -46,7 +45,7 @@ class AttachmentValidator < ActiveModel::EachValidator
     if file.content_type.match?(options[:content_type])
       true
     else
-      record.errors[attribute] << (options[:message] || 'は対応できないファイル形式です')
+      record.errors[attribute] << (options[:message] || "は対応できないファイル形式です")
       false
     end
   end
