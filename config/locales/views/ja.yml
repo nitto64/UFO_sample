@@ -25,10 +25,16 @@ ja:
       title: 記録詳細画面
     edit:
       title: 記録編集画面
+  profiles:
+    show:
+      title: プロフィール詳細画面
+    edit:
+      title: プロフィール編集画面
   header:
     login: ログイン
     logout: ログアウト
     signup: 新規登録
+    profile: プロフィール
   flash:
     created: "%{item}を作成しました"
     not_created: "%{item}を作成出来ませんでした"
