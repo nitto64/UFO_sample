@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :posts do
     delete "image/:id", to: "posts#destroy_image", as: "image"
+    collection do
+      get :autocomplete
+    end
   end
   resources :users
   get "login", to: "user_sessions#new"
